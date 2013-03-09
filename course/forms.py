@@ -20,7 +20,7 @@ class courseForm(ModelForm):
         time require false
         location require false
         description require false
-        teacher 
+        teacher
         timestamp
         >>> from datetime import datetime
         >>> from forms import courseForm
@@ -40,6 +40,9 @@ class courseForm(ModelForm):
         >>> data['name'] = ''
         False
     """
+    class Meta:
+        model = course
+
 
 class assignmentForm(ModelForm):
     """
@@ -50,7 +53,7 @@ class assignmentForm(ModelForm):
         time require false
         location require false
         description require false
-        teacher 
+        teacher
         timestamp
         >>> from datetime import datetime
         >>> from forms import courseForm
@@ -70,6 +73,9 @@ class assignmentForm(ModelForm):
         >>> data['name'] = ''
         False
     """
+    class Meta:
+        model = assignment
+
 
 class announcementForm(ModelForm):
     """
@@ -80,7 +86,7 @@ class announcementForm(ModelForm):
         time require false
         location require false
         description require false
-        teacher 
+        teacher
         timestamp
         >>> from datetime import datetime
         >>> from forms import courseForm
@@ -100,6 +106,9 @@ class announcementForm(ModelForm):
         >>> data['name'] = ''
         False
     """
+    class Meta:
+        model = announcement
+
 
 class resourcesForm(ModelForm):
     """
@@ -110,7 +119,7 @@ class resourcesForm(ModelForm):
         time require false
         location require false
         description require false
-        teacher 
+        teacher
         timestamp
         >>> from datetime import datetime
         >>> from forms import courseForm
@@ -130,6 +139,9 @@ class resourcesForm(ModelForm):
         >>> data['name'] = ''
         False
     """
+    class Meta:
+        model = resources
+
 
 class textbookForm(ModelForm):
     """
@@ -140,7 +152,7 @@ class textbookForm(ModelForm):
         time require false
         location require false
         description require false
-        teacher 
+        teacher
         timestamp
         >>> from datetime import datetime
         >>> from forms import courseForm
@@ -160,3 +172,5 @@ class textbookForm(ModelForm):
         >>> data['name'] = ''
         False
     """
+    class Meta:
+        model = textbook
