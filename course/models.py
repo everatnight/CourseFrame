@@ -8,7 +8,7 @@ class teacher(models.Model):
     biography = models.TextField(null=True, blank=True)
     contact = models.CharField(max_length=50, null=True, blank=True)
     officehour = models.CharField(max_length=30, null=True, blank=True)
-    picture = models.ImageField(upload_to='image')
+    picture = models.ImageField(upload_to='image', null=True, blank=True)
     project = models.TextField(null=True, blank=True)
 
 

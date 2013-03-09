@@ -1,9 +1,8 @@
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
-from course.models import teacher
-from course.forms import ContactForm
+from course.models import teacher, course, assignment, announcement, resources, textbook
+from course.forms import TeacherForm
 
 
 def search_form(request):
@@ -24,18 +23,26 @@ def thanks(request):
     return render_to_response('Thanks.html')
 
 
-def contact(request):
+def add(request, form):
+    #todo: auth
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = form(request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            send_mail(
-                cd['subject'],
-                cd['message'],
-                cd.get('email', 'noreply@example.com'),
-                ['siteowner@example.com'],
-            )
-            return HttpResponseRedirect('/contact/thanks/')
+            form.save()
+            return HttpResponseRedirect('/list_obj/')
     else:
-        form = ContactForm()
+        form = TeacherForm()
+    return render_to_response('contact_form.html', {'form': form})
+
+
+def update(request, eid, form, model):
+    #todo auth
+    print eid
+    if request.method == 'POST':
+        form = form(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/list_obj/')
+    else:
+        form = form(instance=model.objects.filter(id=eid))
     return render_to_response('contact_form.html', {'form': form})
